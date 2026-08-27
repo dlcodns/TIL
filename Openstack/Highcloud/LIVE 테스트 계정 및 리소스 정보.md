@@ -3,49 +3,49 @@
 > skyline에 로그인 할 때는 **{ID}@highcloud** 로 로그인 하세요.
 > (현재는 다운된 서버)
 
-**VM 이름: alpha1**  
-**OS: **Ubuntu-24.04-LTS-Cloud  
-**Flavor:** m1.small  
-**Flavor:** 1VCPU/20GiB/2GiB  
-**IP: **10.0.0.165  
-**keypair: **alpha-key
+**VM 이름: alpha1**
+**OS:** Ubuntu-24.04-LTS-Cloud
+**Flavor:** m1.small
+**vCPU/RAM:** 1VCPU/2GiB
+**IP:** 10.0.0.165
+**keypair:** alpha-key
 
-**VM 이름: alpha2**  
-**OS: **Ubuntu-22.04-LTS-Cloud  
-**Flavor:** m1.medium  
-**Flavor: **2VCPU/40GiB/4GiB  
-**IP: **10.0.0.158  
-**keypair: **alpha-key
+**VM 이름: alpha2**
+**OS:** Ubuntu-22.04-LTS-Cloud
+**Flavor:** m1.medium
+**vCPU/RAM:** 2VCPU/4GiB
+**IP:** 10.0.0.158
+**keypair:** alpha-key
 
-**VM 이름: beta1**  
-**OS: **Rocky-Linux-9-Cloud  
-**Flavor:** m1.nano  
-**Flavor:** 1VCPU/10GiB/1GiB  
-**IP: **10.0.0.124  
-**keypair: **beta-key
+**VM 이름: beta1**
+**OS:** Rocky-Linux-9-Cloud
+**Flavor:** m1.nano
+**vCPU/RAM:** 1VCPU/1GiB
+**IP:** 10.0.0.124
+**keypair:** beta-key
 
-**VM 이름: beta2**  
-**OS: **Ubuntu-24.04-LTS-Cloud  
-**Flavor:** m1.small  
-**Flavor:** 1VCPU/40GiB/4GiB  
-**IP: **10.0.0.136  
-**keypair: **beta-key
+**VM 이름: beta2**
+**OS:** Ubuntu-24.04-LTS-Cloud
+**Flavor:** m1.small
+**vCPU/RAM:** 1VCPU/4GiB
+**IP:** 10.0.0.136
+**keypair:** beta-key
 
-**VM 이름: gamma1**  
-**OS: **Ubuntu-24.04-LTS-Cloud  
-**Flavor:** m1.small.bfv  
-**vCPU/RAM:** 1VCPU/2GiB  
-**Cinder Volume:** 20GiB  
-**IP: **10.0.0.  
-**keypair: **gamma-key
+**VM 이름: gamma1**
+**OS:** Ubuntu-24.04-LTS-Cloud
+**Flavor:** m1.small.bfv
+**vCPU/RAM:** 1VCPU/2GiB
+**Cinder Volume:** 20GiB
+**IP:** 10.0.0.
+**keypair:** gamma-key
 
-**VM 이름: gamma2**  
-**OS: **Ubuntu-22.04-LTS-Cloud  
-**Flavor:** m1.medium.bfv  
-**vCPU/RAM:** 4VCPU/4GiB  
-**Cinder Volume:** 20GiB  
-**IP: **10.0.0.  
-**keypair: **gamma-key
+**VM 이름: gamma2**
+**OS:** Ubuntu-22.04-LTS-Cloud
+**Flavor:** m1.medium.bfv
+**vCPU/RAM:** 4VCPU/4GiB
+**Cinder Volume:** 20GiB
+**IP:** 10.0.0.
+**keypair:** gamma-key
 
 ---
 
@@ -67,10 +67,10 @@
 ---
 
 ## 신청 내역
-![alt text](image.png)
+![alt text](/assets/Openstack/highcloud1.png)
 
 ## 신청 시트
-![alt text](image-1.png)
+![alt text](/assets/Openstack/highcloud2.png)
 
 ## CLI 확인 명령어
-![alt text](image-2.png)
+![alt text](/assets/Openstack/highcloud3.png)
