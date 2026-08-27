@@ -23,7 +23,7 @@ Horizon에 접속하면 로그인 화면이 나온다. admin 계정으로 로그
 
 만약 도메인이 Default 말고도 있다면 로그인 창에 도메인 선택란도 나온다.
 
-![alt text](horizon1.png)
+![alt text](/assets/Openstack/horizon1.png)
 
 ## 프로젝트 확인
 
@@ -36,7 +36,7 @@ service  ← nova, glance 등 서비스 계정용 프로젝트
 
 admin으로 로그인하면 admin 프로젝트 안에 있는 상태다. 여기서 생성하는 모든 리소스는 admin 프로젝트 소속이 된다.
 
-![alt text](horizon2.png)
+![alt text](/assets/Openstack/horizon2.png)
 
 ## 프로젝트 전환
 
@@ -46,24 +46,24 @@ admin으로 로그인하면 admin 프로젝트 안에 있는 상태다. 여기�
 
 **인증(Identity) → 프로젝트(Projects) → 프로젝트 생성(Create Project)** 에서 새 프로젝트를 만들 수 있다.
 
-![alt text](horizon3.png)
+![alt text](/assets/Openstack/horizon3.png)
 
 멤버, 그룹, 역할을 지정할 수 있다. RBAC 기능 중 하나.
 
-![alt text](horizon4.png)
+![alt text](/assets/Openstack/horizon4.png)
 
 ## 역할
 
 **인증 → 역할** 메뉴에 여러 역할이 있는 것을 볼 수 있고, 생성할 수 있다. 역할별로 통제하려면 policy.yaml을 직접 수정해야 한다.
 
-![alt text](horizon5.png)
+![alt text](/assets/Openstack/horizon5.png)
 
 ## 유저 생성
 
 **인증(Identity) → 사용자(Users) → 사용자 생성(Create User)** 에서 유저를 만들 수 있다. Horizon에서 유저를 만들 때는 Primary Project와 Role을 함께 지정해야 한다. CLI와 다르게 역할 없이는 생성이 안 된다.
 
-![alt text](horizon6.png)
-![alt text](horizon7.png)
+![alt text](/assets/Openstack/horizon6.png)
+![alt text](/assets/Openstack/horizon7.png)
 
 ## VM 생성
 
@@ -81,7 +81,7 @@ https://docs.openstack.org/image-guide/obtain-images.html
 
 그 후 이미지 생성 버튼을 누르고, 다운 받은 파일을 이미지 소스에 넣는다.
 
-![alt text](horizon8.png)
+![alt text](/assets/Openstack/horizon8.png)
 
 이미지 공유 가시성은 이미지를 모든 유저가 사용할 수 있게 할 것인지, 특정 유저 혹은 프로젝트만 사용할 수 있게할 지 지정하는 선택란이다.
 
@@ -89,7 +89,7 @@ https://docs.openstack.org/image-guide/obtain-images.html
 
 AWS에서는 과금을 방지하기 위한 하드웨어 분류를 Flavor라고 한다. (t3.medium) OpenStack의 이 메뉴에서는 하드웨어 분류를 할 수 있다.
 
-![alt text](horizon9.png)
+![alt text](/assets/Openstack/horizon9.png)
 
 이미지의 용량에 따라서 잘 설정해야 한다. 아래 사진의 경우는 초경량 cirros이기 때문에 vCPU 1개, RAM 1GB, Root 디스크 10GB로 설정한 것을 볼 수 있다.
 
@@ -114,7 +114,7 @@ VM들이 동시에 CPU를 100% 쓰는 경우가 드물기 때문에 가능한 �
 
 비슷한 케이스로 VMware 운영 상에서 VM을 생성할 때 'vCPU : 총 할당 vCPU'의 비율을 1:3 정도로 배정하는 것이 좋다고 한다. 1대1 할당이 원칙이라고 할 때는 절대로 고려할 수 없는 비율이지만, 1:3 수치가 가능한 것은 할당된 VM이 항상 모든 CPU를 100% 사용하고 있지 않기 때문이다.
 
-![alt text](horizon10.png)
+![alt text](/assets/Openstack/horizon10.png)
 
 ## 네트워크
 
@@ -122,7 +122,7 @@ VM들이 동시에 CPU를 100% 쓰는 경우가 드물기 때문에 가능한 �
 
 현재 구성된 네트워크 전체를 시각적 다이어그램으로 보여주는 화면이다.
 
-![alt text](horizon11.png)
+![alt text](/assets/Openstack/horizon11.png)
 
 ### 네트워크
 
