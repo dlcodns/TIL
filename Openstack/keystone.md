@@ -1,4 +1,5 @@
 # Keystone
+2026.08.27
 
 Keystone은 당신은 누구(Authentication)고, 뭘 하러 왔는지 판단하고 권한을 파악(Authorization)하는 인증 서비스다.
 

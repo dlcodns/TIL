@@ -1,4 +1,5 @@
 # Horizon
+2026.08.27
 
 Horizon은 OpenStack의 웹 대시보드로, CLI 없이 브라우저에서 OpenStack 리소스를 관리할 수 있다.
 
