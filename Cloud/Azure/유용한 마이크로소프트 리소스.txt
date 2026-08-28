@@ -1,0 +1,55 @@
+유용한 마이크로소프트 리소스
+AZ-104 시험을 공부하실 때 꼭 북마크 해두셔야 할 공식 마이크로소프트 웹사이트들 리스트 입니다:
+
+MS Learn에서 패스 배우기:
+
+https://docs.microsoft.com/en-us/learn/certifications/exams/az-104#two-ways-to-prepare
+
+MS Learn
+
+https://docs.microsoft.com/en-us/learn/browse/?roles=administrator&products=azure
+
+Azure 코드 샘플
+
+https://azure.microsoft.com/en-us/resources/samples/?sort=0
+
+공식 Azure 문서
+
+https://docs.microsoft.com/en-us/azure/
+
+공식 마이크로소프트 Azure 유튜브 채널
+
+https://www.youtube.com/user/windowsazure
+
+공식 마이크로소프트 개발자 유튜브 채널
+
+https://www.youtube.com/channel/UCsMica-v34Irf9KVTh6xx-g
+
+파워셸과 CLI를 위해 Azure SDK를 다운 받으세요
+
+https://azure.microsoft.com/en-us/downloads/
+
+파워셸 스크립트를 위한 공식 Github 저장소
+
+https://github.com/Azure/azure-powershell
+
+Azure REST API 브라우저
+
+https://docs.microsoft.com/en-us/rest/api/?view=Azure
+
+
+
+마이크로소프트 랩과 워크숍 - 성공을 위해선 연습만이 살길입니다
+
+Azure 시타델 - 랩과 워크숍
+
+https://azurecitadel.com/
+
+마이크로소프트 클라우드 워크숍 - 더 많은 랩과 워크숍
+
+https://microsoftcloudworkshop.com/
+
+마이크로소프트 교육 내 GitHub AZ-104
+
+https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/
+

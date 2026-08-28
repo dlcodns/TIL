@@ -6,7 +6,7 @@
 Azure Budget은 Cost Management의 기능 중 하나로, 특정 스코프에서 지출 금액이나 사용량 임계치를 설정한 후 임계치를 넘으면 알림이 가는 서비스다. Action Group을 연결하면 자동 대응이 가능하다.
 
 
-![alt text](../assets/Azure/image.png)
+![alt text](/assets/Azure/image.png)
 
 #### 설정 사항
 1. Create a budget
