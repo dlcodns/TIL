@@ -27,7 +27,7 @@ source ~/highcloud-admin-openrc.sh
 <details>
 <summary><b>1-0 전체 결과 시트</b></summary>
 
-![alt text](image.png)
+![alt text](/assets/Openstack/test1.png)
 
 </details>
 
@@ -35,10 +35,10 @@ source ~/highcloud-admin-openrc.sh
 <summary><b>1-1 개인정보 미동의</b></summary>
 
 - 슬랙
-![alt text](image-1.png)
+![alt text](/assets/Openstack/test2.png)
 
 - 이메일
-![alt text](image-2.png)
+![alt text](/assets/Openstack/test3.png)
 
 > 결과 -
 
@@ -48,10 +48,10 @@ source ~/highcloud-admin-openrc.sh
 <summary><b>1-2 성함 한글 아님</b></summary>
 
 - 슬랙
-![alt text](image-3.png)
+![alt text](/assets/Openstack/test4.png)
 
 - 이메일
-![alt text](image-4.png)
+![alt text](/assets/Openstack/test5.png)
 
 
 
@@ -61,7 +61,7 @@ source ~/highcloud-admin-openrc.sh
 <summary><b>1-3 이메일 정규식 틀림</b></summary>
 
 - 슬랙
-![alt text](image-5.png)
+![alt text](/assets/Openstack/test6.png)
 
 - 이메일 발송 X
 
@@ -72,10 +72,10 @@ source ~/highcloud-admin-openrc.sh
 <summary><b>1-4 플젝명이 영문이 아님</b></summary>
 
 - 슬랙
-![alt text](image-6.png)
+![alt text](/assets/Openstack/test7.png)
 
 - 이메일
-![alt text](image-7.png)
+![alt text](/assets/Openstack/test8.png)
 
 
 </details>
@@ -84,10 +84,10 @@ source ~/highcloud-admin-openrc.sh
 <summary><b>1-5 id가 영문과 숫자가 아님</b></summary>
 
 - 슬랙
-![alt text](image-8.png)
+![alt text](/assets/Openstack/test9.png)
 
 - 이메일
-![alt text](image-9.png)
+![alt text](/assets/Openstack/test10.png)
 
 
 
@@ -97,10 +97,10 @@ source ~/highcloud-admin-openrc.sh
 <summary><b>1-6 반납일이 내일 이후가 아님</b></summary>
 
 - 슬랙
-![alt text](image-10.png)
+![alt text](/assets/Openstack/test11.png)
 
 - 이메일
-![alt text](image-11.png)
+![alt text](/assets/Openstack/test12.png)
 
 </details>
 
@@ -112,10 +112,10 @@ source ~/highcloud-admin-openrc.sh
 <summary><b>2-1 신청 후 생성 대기 상태</b></summary>
 
 - 슬랙
-![alt text](image-12.png)
+![alt text](/assets/Openstack/test13.png)
 
 - 시트
-![alt text](image-13.png)
+![alt text](/assets/Openstack/test14.png)
 
 
 </details>
@@ -124,10 +124,10 @@ source ~/highcloud-admin-openrc.sh
 <summary><b>2-2 [2-1]과 같은 내용으로 신청</b></summary>
 
 - 슬랙
-![alt text](image-14.png)
+![alt text](/assets/Openstack/test15.png)
 
 - 이메일
-![alt text](image-15.png)
+![alt text](/assets/Openstack/test16.png)
 
 > 결과 -
 
