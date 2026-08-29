@@ -113,10 +113,110 @@
 - 콜드 스타트(Cold Start): 오랜만에 호출되면 컨테이너를 새로 띄우느라 지연 발생. Provisioned Concurrency로 미리 웜업 가능
 
 ### 호출 방식(트리거)
+| 모델 | 설명 | 예시 |
+|---|---|---|
+| 동기(Synchronous) | 호출자가 응답 기다림 | API Gateway, Function URL, ALB |
+| 비동기(Asynchronous) | 호출자는 바로 리턴, Lambda는 큐에 넣고 나중에 처리, 실패 시 재시도 | S3 이벤트, SNS, EventBridge |
+| 폴링 기반(Poll-based) | Lambda가 소스를 직접 폴링 | SQS, DynamoDB Streams, Kinesis |
+
+### Lambda Function URL
+- *그냥 함수 하나 빨리 호출할 때*
+- Lambda 함수에 API Gateway 없이 직접 HTTPS 엔트포인트를 부여하는 기능
+- 설정 간단, 추가 비용 없음(Lambda 요금만)
+- 지원 기능: 기본 CORS, IAM 인증 또는 퍼블릭
+- 없는 기능: 요청 스로틀링 세밀 제어, 커스텀 도메인 매핑, 캐싱, 요청/응답 변환, API 키 관리, 사용량 플랜, WAF 직접 연동
+- 적합한 경우: 단일 Lambda 함수를 간단히 호출하고 싶을 때 (마이크로 API, 웹훅, 예측 결과 가져오는 간단한 API)
+
+### API Gateway
+- *제대로 된 API 게이트웨이 기능 필요할 때(인증, 스로틀링, 여러 리소스 관리)*
+- 완전한 API 관리 서비스: 여러 Lambda/백엔드를 하나의 API로 묶어서 제공
+- 기능: 요청 검증, API키 & 사용량 플랜, 캐싱, 요청/응답 변환, 커스텀 도메인, WAF 연동, Cognito/IAM/Lambda Authorizer 인증
+- Rest API vs HTTP API 두 종류
+    - REST API: 기능이 많음(캐싱, 요청 검증 등), 비용/지연 더 큼
+    - HTTP API: 기능 단순, 더 빠름, 더 저렴
+- 적합한 경우: 여러 엔드포인트/리소스를 묶은 정식 API, 세밀한 트래픽 제어, 다수 클라이언트에게 API 키 발급해야 할 때
+
+### 동시성(Concurrency) 관리
+- Reserved Concurrency: 특정 함수가 쓸 수 있는 최대 동시 실행 수 제한/보장
+- Provisioned Concurrency: 미리 실행 환경을 웜업 상태로 유지 → 콜드 스타트 제거
+
+---
+
+### Hive
+빅데이터를 SQL처럼 쿼리할 수 있게 해주는 데이터 웨어하우스 소프트웨어
+- Hive Matastore: 테이블 스키마 정보를 저장하는 메타데이터 저장소 → Glue DataCatalog의 원형/호환 개념
+- Amazon EMR(관리형 Hadoop/Spark 클러스터)에서 Hive를 실행하는 게 일반적
+
+### DynamoDB 사용 모드
+- 프로비저닝 모드: RCU/WCU를 미리 설정하는 방식. 설정한 용량을 초과하면 스로틀링 발생
+- 온디맨드 모드: 트래픽에 따라 자동 스케일, 사용한 만큼 과금
+
+### DynamoDB용 Athena 커넥터
+- Athena가 Federated Query 기능으로 DynamoDB를 직접 조회할 수 있개 해주는 커넥터
+
+### AWS Glue로 DynamoDB → S3 내보내기
+- Glue Job이 DynamoDB 테이블 PITR 데이터를 읽어서 S3로 복사
+    - DynamoDB 테이블의 PITR 백업 데이터를 기반으로 내보내는 방식이라 RCU/WCU를 소비하지 않음
+- Glue Job이 S3로 내보낸 이후, Glue가 ETL/변환 → 지표 계산은 이 S3 사본에서 처리 → 라이브 테이블 건드리지 않음
+
+---
+
+### EBS Encryption by Default
+- 리전 단위 설정 하나 켜두면, 그 리전에서 생성되는 모든 새 EBS 볼륨이 자동으로 암호화됨
+- 볼륨 하나하나 수동으로 함호화 설정할 필요가 없어짐. → 가장 적은 운영 오버헤드 조건에 맞음
+- 기본 키로 별 수도 있지만, 기본 암호화 키를 고객 관리형 키(CMK)로 지정하면 앞으로 생성되는 모든 볼륨이 그 CMK로 자동 암호화됨
+
+#### HIPAA 규정준수 → CMK 필수
+
+### IAM 역할과 CMK 권한
+- EBS 볼륨이 CMK로 암호화되어 있으면, 그 볼륨을 생성·연결·마운트하는 주체(여기선 EKS/노드)가 그 CMK를 쓸 권한이 있어야 함
+- KMS 키 자체에도 "이 IAM 역할은 이 키를 쓸 수 있다"는 키 정책이 필요
+- 즉 "암호화를 켜는 것"과 "그 암호화된 볼륨을 실제로 다룰 권한을 주는 것"은 별개의 두 단계 
+
+---
+
+### AWS CloudFormation
+- Infrastructure as Code(IaC) 서비스: 인프라 구성을 코드(YAML/JSON 템플릿)으로 정의해서 반복 가능하게 배포
+- 템플릿 하나로 EC2, ASG, NLB, Aurora 등 여러 리소스를 하나의 스택으로 묶어서 관리
+- 같은 템플릿을 여러 리전/여러 환경에서 재사용 배포 가능
+
+### AWS Systems Manager Automation
+- 운영 작업(패치, 인스턴스 재시작, 스냅샷 생성)을 runbook 형태로 자동화하는 도구
+- 처음부터 인프라 전체를 프로비저닝하는 IaC 도구가 아니라 이미 존재하는 리소스에 대한 운영 작업을 자동화하는 도구임
+
+### AWS Config
+- 리소스의 구성 변경 이력을 추적하고 규정 준수 규칙에 어긋하는지 평가하는 서비스
+- Remediation: 규칙 위반이 감지되면 자동으로 수정 조치를 실행하는 기능
+- 새 인프라를 처음부터 프로비저닝하는 IaC가 아니라 이미 있는 리소스가 규칙을 지키는지 감시하고 고치는 도구
+
+### AWS Elastic Beanstalk 
+- 애플리케이션 코드를 올리면 AWS가 알아서 EC2, 로드밸런서, Auto Scaling 등을 구성해주는 PaaS형 배포 플랫폼
+- ALB를 씀
+- 자체 방식으로 인프라를 추상화가기 때문에 프로토타입에서 이미 구성한 정확한 아키텍처를 그대로 재현하기 어려움
+
+---
+
+### EBS 스냅샷
+- EBS 볼륨의 특정 시점 백업, S3에 저장됨
+- 스냅샷을 삭제하면 바로 사라짐
+
+### EBS 스냅샷 Recycle Bin
+- 설정한 보존 기간(1일~1년)동안 휴지통에 보관하는 안전망
+- 리전/계정 전체 스냅샷에 태그 기반으로 적용 가능
+
+### Cross Region 스냅샷 복사
+- 스냅샷을 다른 리전으로 복사해두는 것: 원래는 리전 재해 복구(DR) 목적(해당 리전 전체가 다운됐을 때 대비)
+- 문제는 매일 새 복사본을 또 만들어야 하고, 그 복사본들도 결국 스케줄링/보존관리/모니터링을 직접 개발해야 함 → "최소 개발 노력" 조건과 안 맞음
+- 실수로 삭제되는 문제 자체를 막아주지도 않음 (원본이 삭제돼도 복사본은 남지만, 그 복사본 관리 체계를 처음부터 만들어야 하는 부담)
 
 
-
-
-
-### Lamdba 함수 URL
-- API Gateway 없이 직접 HTTPS 엔드포인트를 부여하는 기능
+### S3 스토리지 클래스 전체 정리
+| 클래스 | 특징 | 적합한 경우 |
+|---|---|---|
+| S3 Standard | 높은 가용성/내구성, 즉시 접근 | 자주 접근하는 데이터 |
+| S3 Intelligent-Tiering | 접근 패턴 자동 분석해서 최적 티어로 자동 이동 | 접근 패턴이 불규칙/예측 불가할 때 |
+| S3 Standard-IA (Infrequent Access) | 저장 비용↓, 검색(retrieval) 비용 있음, 즉시 접근 가능 | 가끔 접근하지만 빠른 접근은 필요한 데이터 |
+| S3 One Zone-IA | Standard-IA와 비슷하지만 단일 AZ에만 저장 (더 저렴, 내구성↓) | 재생성 가능한 데이터, 백업의 백업 |
+| S3 Glacier Instant Retrieval | 아카이브지만 밀리초 단위 즉시 조회 가능 | 분기별 1회 정도 접근하는 아카이브 |
+| S3 Glacier Flexible Retrieval | 조회에 몇 분~몇 시간 소요 | 연 1~2회 접근하는 아카이브 |
+| S3 Glacier Deep Archive | 가장 저렴, 복원에 12시간 이상 | 규제 준수용 장기 보관(7~10년), 거의 접근 안 함 |
